@@ -1,13 +1,18 @@
 package com.marketplace.fairmarket.model;
 
+import com.marketplace.fairmarket.enums.OrderStatus;
+import com.marketplace.fairmarket.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import java.util.Optional;
+import java.util.UUID;
+
 
 @Document(collection = "orders")
 @Data
@@ -16,18 +21,26 @@ import javax.persistence.Id;
 public class Order {
 
     @Id
-    private Integer id;
+    private ObjectId _id;
 
     private String time;
 
-    private String number;
+    private UUID number;
 
     @DBRef
     private Customer customer;
 
     @DBRef
-    private Seller seller;
+    private Producer producer;
 
-    @DBRef
-    private Shop shop;
+    private OrderStatus status;
+
+    public Order(ObjectId id, String time, UUID number, Customer customer, Producer producer, OrderStatus status) {
+        this._id=id;
+        this.time=time;
+        this.number=number;
+        this.customer=customer;
+        this.producer=producer;
+        this.status=status;
+    }
 }

@@ -1,10 +1,11 @@
 package com.marketplace.fairmarket.model;
 
 import lombok.*;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Id;
 
 @Document(collection = "reviews")
 @Data
@@ -15,7 +16,7 @@ import javax.persistence.Id;
 public class Review {
 
     @Id
-    private Integer id;
+    private ObjectId _id;
 
     private String text;
 
@@ -23,10 +24,7 @@ public class Review {
     private Customer customer;
 
     @DBRef
-    private Seller seller;
-
-    @DBRef
-    private Shop shop;
+    private Producer producer;
 
     @DBRef
     private Product product;

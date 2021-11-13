@@ -2,12 +2,13 @@ package com.marketplace.fairmarket.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.List;
+import java.util.UUID;
 
 @Document(collection = "customers")
 @Data
@@ -18,7 +19,7 @@ import java.util.List;
 public class Customer {
 
     @Id
-    private Integer id;
+    private ObjectId _id;
 
     private String name;
 
@@ -28,6 +29,12 @@ public class Customer {
 
     private String phoneNumber;
 
+    private String password;
+
+    private String address;
+
+    private Long chatId;
+
     @DBRef
     private List<Order> orders;
 
@@ -35,7 +42,7 @@ public class Customer {
     private List<Review> productReviews;
 
     @DBRef
-    private List<Review> sellerReviews;
+    private List<Review> producerReviews;
 
     @DBRef
     private List<Review> shopReviews;

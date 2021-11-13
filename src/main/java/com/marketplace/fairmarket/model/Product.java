@@ -1,11 +1,11 @@
 package com.marketplace.fairmarket.model;
 
 import lombok.*;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Document(collection = "products")
 @Data
@@ -13,20 +13,26 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Product {
+public class Product implements Comparable<Product> {
 
     @Id
-    private Integer id;
+    private ObjectId _id;
 
     private String name;
 
-    private Integer amount;
+    private Float amount;
 
     private Float rating;
 
-    @DBRef
-    private Shop shop;
+    private String category;// можно Enum впихнуть
+
+    private Float price;
 
     @DBRef
-    private Seller seller;
+    private Producer producer;
+
+    @Override
+    public int compareTo(Product p){
+        return this.getRating().compareTo(p.getRating());
+    }
 }
