@@ -12,7 +12,6 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends MongoRepository<Product, Integer> {
     Optional<Product> findProductBy_id(ObjectId _id);
-    Optional<Product> findProductById(Integer id);
     Optional<List<Product>> findAllByProducer(Producer producer);
     List<Product> findAll();
     Optional<List<Product>> findAllByNameRegex(String searchString);

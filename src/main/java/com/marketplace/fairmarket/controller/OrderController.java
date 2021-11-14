@@ -17,7 +17,7 @@ public class OrderController {
 
     @PostMapping("/make")
     public ResponseEntity<String> makeOrder(@RequestBody OrderDTO orderDTO){
-        if (orderService.makeOrder(orderDTO).getStatus()) return ResponseEntity.status(HttpStatus.OK).body("Successful");
+        if (orderService.makeOrder(orderDTO).isStatus()) return ResponseEntity.status(HttpStatus.OK).body("Successful");
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Unsuccessful");
     }
 

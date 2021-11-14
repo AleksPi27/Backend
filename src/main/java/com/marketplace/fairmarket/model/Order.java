@@ -35,12 +35,4 @@ public class Order {
 
     private OrderStatus status;
 
-    public Order(ObjectId id, String time, UUID number, Customer customer, Producer producer, OrderStatus status) {
-        this._id=id;
-        this.time=time;
-        this.number=number;
-        this.customer=customer;
-        this.producer=producer;
-        this.status=status;
-    }
 }
